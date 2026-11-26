@@ -1,353 +1,510 @@
 
-const menuData = {
-  veg: [
-    {
-      category: "starter",
-      title: "Vegetarian Starters",
-      items: [
-        { name: "Veg. China Town", price: "90 / 170" },
-        { name: "Veg. Chilly", price: "— / 220" ,
-            image: "veg-chilly.jpg"             
-         },
-        { name: "Veg. 65", price: "90 / 170" ,
-            image: "veg-65.jpg"
-        },
-        { name: "Veg. Manchurian", price: "90 / 170",
-          image: "veg-manchurian.jpg" },
-        { name: "Veg. Crispy", price: "170" ,
-            image: "veg-crispy.jpg"
-         },
-        { name: "Paneer 65", price: "170" ,
-            image: "paneer-65.jpg"
-         },
-        { name: "Veg. Lollypop", price: "180" ,
-            image: "veg-lollipop.jpg"
-         },
-        { name: "Veg. Garlic Dry", price: "170" },
-        { name: "Veg. Barbeque Sauce", price: "180" },
-        { name: "Paneer Chilly", price: "180",
-          image: "paneer-chilly.jpg" },
-        { name: "Paneer Manchurian", price: "180" , image: "paneer-manchurian.jpg" },
-        { name: "Paneer Crispy", price: "180" },
-        { name: "Potato Crispy", price: "170" }
-      ]
-    },
+// ==========================================
+// DESI CHAI THEKA - SUPABASE MENU AND CART
+// ==========================================
 
-    {
-      category: "rice",
-      title: "Vegetarian Rice",
-      items: [
-        { name: "Veg. Paneer Chilli Rice", price: "100 / 180" , image: "veg-paneer chilly rice.jpg" },
-        { name: "Veg. Tadka Spl Rice", price: "150 / 250" },
-        { name: "Veg. Chopper Rice", price: "130 / 210" , image: "veg-chopper-rice.jpg" },
-        { name: "Veg. Burnt Chilli Rice", price: "110 / 180" },
-        { name: "Veg. Fried Rice", price: "110" , image : "veg-friedrice.jpg" },
-        { name: "Veg. Schezwan Rice", price: "120" , image: "Veg-Schezwan Rice.jpg" },
-        { name: "Veg. Triple Rice", price: "140" , image: "veg-Triple Rice.jpg" },
-        { name: "Veg. Chopper Rice", price: "180" , image: "veg-chopper-rice.jpg" },
-        { name: "Veg. Garlic Rice", price: "120" },
-        { name: "Veg. Hong Kong Rice", price: "130" },
-        { name: "Veg. Singapore Rice", price: "130" , image: "veg-Singapore Rice.jpg" },
-        { name: "Veg. Paneer Rice", price: "140" },
-        { name: "Veg. Combination Rice", price: "110" },
-        { name: "Veg. Combination Schezwan Rice", price: "120" }
-      ]
-    },
-
-    {
-      category: "noodles",
-      title: "Vegetarian Noodles",
-      items: [
-        { name: "Veg. Hakka Noodles", price: "70 / 130",
-          image: "Veg-Hakka Noodles.jpg" },
-        { name: "Veg. Schezwan Noodles", price: "80 / 140" , image: "Veg-Schezwan Noodles.jpg" },
-        { name: "Veg. Triple Noodles", price: "100 / 180" },
-        { name: "Veg. Singapore Noodles", price: "90 / 170" },
-        { name: "Veg. Pecking Noodles", price: "100 / 180" },
-        { name: "Veg. Hong Kong Noodles", price: "90 / 170" },
-        { name: "Veg. Hot Garlic Noodles", price: "100 / 180" },
-        { name: "Veg. Green Garlic Noodles", price: "130 / 220" },
-        { name: "Veg. Special Noodles", price: "100 / 180" },
-        { name: "Veg. Tikka Spl Noodles", price: "120 / 220" }
-      ]
-    },
-
-    {
-      category: "soup",
-      title: "Vegetarian Soup",
-      items: [
-        { name: "Veg. Manchow", price: "80 / 110",
-          image: "Veg-Manchow.jpg" },
-        { name: "Veg. Hot & Sour", price: "100" },
-        { name: "Veg. Royal Soup", price: "100" },
-        { name: "Veg. Special Soup", price: "100" },
-        { name: "Veg. Lung Fung Soup", price: "100" },
-        { name: "Veg. Noodles Soup", price: "100" },
-        { name: "Veg. Tomato Soup", price: "150" },
-        { name: "Veg. Sweet Corn Soup", price: "110" , image: "Veg-Sweet Corn Soup.jpg" },
-        { name: "Veg. Tallumein Soup", price: "110" },
-        { name: "Veg. Theka Spl Soup", price: "120" }
-      ]
-    }
-  ],
-
-  nonveg: [
-    {
-      category: "starter",
-      title: "Non-Vegetarian Starters",
-      items: [
-        { name: "Chicken Chilly", price: "120 / 200",
-          image: "chicken-chilly.jpg" },
-        { name: "Chicken 65", price: "200" },
-        { name: "Chicken Manchurian", price: "120 / 200",
-          image: "Chicken-Manchurian.jpg" },
-        { name: "Chicken Crunchy", price: "260" },
-        { name: "Chicken Sate", price: "280" },
-        { name: "Garlic Chicken", price: "200" , image: "Garlic-Chicken.jpg" },
-        { name: "Apple Chicken", price: "220" },
-        { name: "Chicken Lolipop (8 pcs)", price: "190",
-          image: "chicken-lollipop.jpg" },
-        { name: "Chicken Black Pepper", price: "220" },
-        { name: "Hot Garlic Chicken", price: "220" , image: "Hot-Garlic-Chicken.jpg" },
-        { name: "Chicken Crispy", price: "190" },
-        { name: "Chil. Hong Kong Dry", price: "190" },
-        { name: "Chil. Schezwan Dry", price: "110 / 190" },
-        { name: "Chil. Lolipop Masala Dry", price: "120 / 200" },
-        { name: "Theka Special Chicken Dry", price: "230" },
-        { name: "Chil. Barbeque Sauce", price: "220" }
-      ]
-    },
-
-    {
-      category: "rice",
-      title: "Non-Vegetarian Rice",
-      items: [
-        { name: "Chicken Fried Rice", price: "80 / 120",
-          image: "chicken-fried-rice.jpg" },
-        { name: "Chicken Schezwan Rice", price: "90 / 140" },
-        { name: "Chicken Triple Rice", price: "130 / 220" ,image: "Chicken-Triple-Rice.jpg" },
-        { name: "Chicken Garlic Rice", price: "110 / 180" },
-        { name: "Chicken Hong Kong Rice", price: "110 / 180" },
-        { name: "Chicken Singapore Rice", price: "110 / 180" },
-        { name: "Mushroom Chilli Rice", price: "130 / 220" },
-        { name: "Chicken Korean Rice", price: "180" },
-        { name: "Chicken Chopper Rice", price: "100 / 180" ,image: "Chicken-Chopper-Rice.jpg" },
-        { name: "Chicken Ginger Rice", price: "90 / 180" },
-        { name: "Chicken Manchurian Rice", price: "100 / 170" ,image: "Chicken-Manchurian-Rice.jpg" },
-        { name: "Theka Special Rice", price: "150 / 250" },
-        { name: "Chicken Combination Rice", price: "90 / 140" },
-        { name: "Chicken Schezwan Combination Rice", price: "100 / 140" }
-      ]
-    },
-
-    {
-      category: "noodles",
-      title: "Non-Vegetarian Noodles",
-      items: [
-        { name: "Chicken Hakka Noodles", price: "90 / 150" ,image: "Chicken-Hakka-Noodles.jpg" },
-        { name: "Chicken Schezwan Noodles", price: "100 / 160" },
-        { name: "Chicken Triple Noodles", price: "130 / 210" },
-        { name: "Chicken Singapore Noodles", price: "110 / 180" },
-        { name: "Chicken Pecking Noodles", price: "130 / 220" },
-        { name: "Chicken Hong Kong Noodles", price: "110 / 180" },
-        { name: "Chicken Hot Garlic Noodles", price: "130 / 220" },
-        { name: "Green Garlic Noodles", price: "150 / 250" },
-        { name: "Chicken Special Noodles", price: "130 / 220" },
-        { name: "Desi Theka Noodles", price: "150 / 250" }
-      ]
-    },
-
-    {
-      category: "soup",
-      title: "Non-Vegetarian Soup",
-      items: [
-        { name: "Chicken Manchow", price: "60 / 100" , image: "Chicken-Manchow.jpg" },
-        { name: "Chicken Hot & Sour", price: "120" ,image: "Chicken-Hot & Sour.jpg" },
-        { name: "Chicken Royal Soup", price: "110" },
-        { name: "Chicken Special Soup", price: "120" },
-        { name: "Chicken Noodles Soup", price: "110" },
-        { name: "Sweet Corn Soup", price: "120" },
-        { name: "Chicken Tallumein Soup", price: "130" },
-        { name: "Chicken Clear Soup", price: "140" },
-        { name: "Chicken Schezwan Soup", price: "140" }
-      ]
-    }
-  ]
+// Menu data from Supabase
+let menuData = {
+    veg: [],
+    nonveg: []
 };
 
-// CURRENT FILTERS
-
+// Menu filters
 let selectedType = "veg";
 let selectedCategory = "all";
 let searchText = "";
 
-// HTML ELEMENTS
+// Customer cart
+let cart = [];
 
+// HTML elements
 const digitalMenu = document.getElementById("digitalMenu");
 const menuHeading = document.getElementById("menuHeading");
 const menuCount = document.getElementById("menuCount");
 const menuSearch = document.getElementById("menuSearch");
+const cartItems = document.getElementById("cartItems");
+const cartTotal = document.getElementById("cartTotal");
+// Restaurant WhatsApp number (India)
+const RESTAURANT_WHATSAPP = "919370016822";
 
-// DISPLAY MENU
+// Load menu from Supabase
+async function loadMenuFromSupabase() {
 
+    if (!window.db) {
+        console.error("Supabase client not initialized.");
+        digitalMenu.textContent = "Unable to connect to menu database.";
+        return;
+    }
+
+    digitalMenu.textContent = "Loading menu...";
+
+    const { data, error } = await window.db
+        .from("menu_items")
+        .select("*")
+        .eq("is_available", true)
+        .order("name");
+
+    if (error) {
+        console.error("Menu loading error:", error);
+        digitalMenu.textContent = "Unable to load menu. Please try again.";
+        return;
+    }
+
+    menuData.veg = data.filter(item => item.food_type === "veg");
+    menuData.nonveg = data.filter(item => item.food_type === "nonveg");
+
+    renderMenu();
+}
+
+// Display menu
 function renderMenu() {
 
-  if (!digitalMenu) return;
+    if (!digitalMenu) return;
 
-  const sections = menuData[selectedType];
+    const sections = menuData[selectedType];
 
-  const filteredSections = sections.map(section => {
-
-    const filteredItems = section.items.filter(item => {
-
-      const matchesSearch =
-        item.name.toLowerCase().includes(searchText);
-
-      return matchesSearch;
-    });
-
-    return {
-      ...section,
-      items: filteredItems
+    const categoryTitles = {
+        starter: selectedType === "veg" ? "Vegetarian Starters" : "Non-Vegetarian Starters",
+        rice: selectedType === "veg" ? "Vegetarian Rice" : "Non-Vegetarian Rice",
+        noodles: selectedType === "veg" ? "Vegetarian Noodles" : "Non-Vegetarian Noodles",
+        soup: selectedType === "veg" ? "Vegetarian Soup" : "Non-Vegetarian Soup"
     };
 
-  }).filter(section => {
+    const filteredItems = sections.filter(item => {
 
-    const matchesCategory =
-      selectedCategory === "all" ||
-      section.category === selectedCategory;
+        const matchesSearch = item.name.toLowerCase().includes(searchText);
 
-    return matchesCategory && section.items.length > 0;
-  });
+        const matchesCategory =
+            selectedCategory === "all" ||
+            item.category === selectedCategory;
 
-  digitalMenu.innerHTML = "";
-
-  let totalItems = 0;
-
-  filteredSections.forEach(section => {
-
-    totalItems += section.items.length;
-
-    const card = document.createElement("div");
-    card.className = "menu-category-card";
-
-    const heading = document.createElement("h4");
-    heading.textContent = section.title;
-
-    card.appendChild(heading);
-
-    section.items.forEach(item => {
-
-      const row = document.createElement("div");
-      row.className = "digital-menu-item";
-
-      const details = document.createElement("div");
-      details.className = "dish-details";
-
-      if (item.image) {
-
-        const image = document.createElement("img");
-
-        image.src = `assets/images/menu/${item.image}`;
-        image.alt = item.name;
-        image.className = "dish-thumbnail";
-
-        image.onerror = function() {
-          this.style.display = "none";
-        };
-
-        details.appendChild(image);
-      }
-
-      const name = document.createElement("span");
-      name.className = "dish-name";
-      name.textContent = item.name;
-
-      details.appendChild(name);
-
-      const price = document.createElement("span");
-      price.className = "dish-price";
-      price.textContent = item.price;
-
-      row.append(details, price);
-
-      card.appendChild(row);
-
+        return matchesSearch && matchesCategory;
     });
 
-    digitalMenu.appendChild(card);
+    digitalMenu.innerHTML = "";
 
-  });
+    const categories = ["starter", "rice", "noodles", "soup"];
 
-  menuHeading.textContent =
-    selectedType === "veg"
-      ? "Vegetarian Menu"
-      : "Non-Vegetarian Menu";
+    let totalItems = 0;
 
-  menuCount.textContent = `${totalItems} dishes`;
+    categories.forEach(category => {
 
-  if (totalItems === 0) {
+        const categoryItems = filteredItems.filter(
+            item => item.category === category
+        );
 
-    const message = document.createElement("p");
+        if (categoryItems.length === 0) return;
 
-    message.className = "no-menu-results";
-    message.textContent = "No dishes found. Try another search.";
+        totalItems += categoryItems.length;
 
-    digitalMenu.appendChild(message);
-  }
+        const card = document.createElement("div");
+        card.className = "menu-category-card";
+
+        const heading = document.createElement("h4");
+        heading.textContent = categoryTitles[category];
+
+        card.appendChild(heading);
+
+        categoryItems.forEach(item => {
+
+            const row = document.createElement("div");
+            row.className = "digital-menu-item";
+
+            const details = document.createElement("div");
+            details.className = "dish-details";
+
+            if (item.image_url) {
+
+                const image = document.createElement("img");
+
+                image.src = item.image_url;
+                image.alt = item.name;
+                image.className = "dish-thumbnail";
+
+                image.onerror = function () {
+                    this.style.display = "none";
+                };
+
+                details.appendChild(image);
+            }
+
+            const name = document.createElement("span");
+            name.className = "dish-name";
+            name.textContent = item.name;
+
+            details.appendChild(name);
+
+            const price = document.createElement("span");
+            price.className = "dish-price";
+
+            if (item.has_half_full) {
+                price.textContent =
+                    `Half ₹${item.half_price} / Full ₹${item.full_price}`;
+            } else {
+                price.textContent = `₹${item.single_price}`;
+            }
+
+            // Portion selector
+            const portionSelect = document.createElement("select");
+            portionSelect.className = "portion-select";
+
+            if (item.has_half_full) {
+
+                const halfOption = document.createElement("option");
+                halfOption.value = "half";
+                halfOption.textContent = "Half";
+
+                const fullOption = document.createElement("option");
+                fullOption.value = "full";
+                fullOption.textContent = "Full";
+
+                portionSelect.append(halfOption, fullOption);
+
+            } else {
+
+                const singleOption = document.createElement("option");
+                singleOption.value = "single";
+                singleOption.textContent = "Single";
+
+                portionSelect.appendChild(singleOption);
+                portionSelect.style.display = "none";
+            }
+
+            // Add to cart button
+            const addButton = document.createElement("button");
+            addButton.className = "add-cart-btn";
+            addButton.textContent = "+ Add";
+
+            addButton.addEventListener("click", () => {
+
+                const portion = portionSelect.value;
+
+                addToCart(item, portion);
+            });
+
+            const orderControls = document.createElement("div");
+            orderControls.className = "dish-order-controls";
+
+            orderControls.append(portionSelect, addButton);
+
+            const itemContent = document.createElement("div");
+            itemContent.append(price, orderControls);
+
+            row.append(details, itemContent);
+            card.appendChild(row);
+        });
+
+        digitalMenu.appendChild(card);
+    });
+
+    menuHeading.textContent =
+        selectedType === "veg"
+            ? "Vegetarian Menu"
+            : "Non-Vegetarian Menu";
+
+    menuCount.textContent = `${totalItems} dishes`;
+
+    if (totalItems === 0) {
+        const message = document.createElement("p");
+        message.className = "no-menu-results";
+        message.textContent = "No dishes found. Try another search.";
+        digitalMenu.appendChild(message);
+    }
 }
 
-// VEG / NON-VEG BUTTONS
+// Add dish to cart
+function addToCart(item, portion) {
 
+    let unitPrice;
+
+    if (item.has_half_full) {
+
+        unitPrice = portion === "half"
+            ? Number(item.half_price)
+            : Number(item.full_price);
+
+    } else {
+
+        unitPrice = Number(item.single_price);
+    }
+
+    if (!Number.isFinite(unitPrice) || unitPrice < 0) {
+        alert("This portion is currently unavailable.");
+        return;
+    }
+
+    const existingItem = cart.find(cartItem =>
+        cartItem.id === item.id &&
+        cartItem.portion === portion
+    );
+
+    if (existingItem) {
+
+        existingItem.quantity++;
+
+    } else {
+
+        cart.push({
+            id: item.id,
+            name: item.name,
+            portion: portion,
+            price: unitPrice,
+            quantity: 1
+        });
+    }
+
+    renderCart();
+}
+
+// Display cart
+function renderCart() {
+
+    cartItems.innerHTML = "";
+
+    if (cart.length === 0) {
+
+        cartItems.textContent =
+            "Your cart is empty. Add your favourite dishes!";
+
+        cartTotal.textContent = "₹0";
+        return;
+    }
+
+    let total = 0;
+
+    cart.forEach((item, index) => {
+
+        const lineTotal = item.price * item.quantity;
+        total += lineTotal;
+
+        const row = document.createElement("div");
+        row.className = "cart-item";
+
+        const info = document.createElement("div");
+        info.className = "cart-item-info";
+
+        const name = document.createElement("strong");
+        name.textContent = item.name;
+
+        const details = document.createElement("small");
+
+        const portionName =
+            item.portion === "single"
+                ? "Single"
+                : item.portion.charAt(0).toUpperCase() + item.portion.slice(1);
+
+        details.textContent =
+            `${portionName} | ₹${item.price} each | Subtotal: ₹${lineTotal}`;
+
+        info.append(name, details);
+
+        const controls = document.createElement("div");
+        controls.className = "cart-controls";
+
+        const minusButton = document.createElement("button");
+        minusButton.textContent = "−";
+
+        minusButton.addEventListener("click", () => {
+            changeQuantity(index, -1);
+        });
+
+        const quantity = document.createElement("span");
+        quantity.textContent = item.quantity;
+
+        const plusButton = document.createElement("button");
+        plusButton.textContent = "+";
+
+        plusButton.addEventListener("click", () => {
+            changeQuantity(index, 1);
+        });
+
+        const removeButton = document.createElement("button");
+        removeButton.textContent = "Remove";
+        removeButton.className = "remove-btn";
+
+        removeButton.addEventListener("click", () => {
+            cart.splice(index, 1);
+            renderCart();
+        });
+
+        controls.append(
+            minusButton,
+            quantity,
+            plusButton,
+            removeButton
+        );
+
+        row.append(info, controls);
+        cartItems.appendChild(row);
+    });
+
+    cartTotal.textContent = `₹${total}`;
+}
+
+// Change quantity
+function changeQuantity(index, change) {
+
+    cart[index].quantity += change;
+
+    if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+    }
+
+    renderCart();
+}
+
+// Veg / Non-veg buttons
 document.querySelectorAll(".type-btn").forEach(button => {
 
-  button.addEventListener("click", () => {
+    button.addEventListener("click", () => {
 
-    document.querySelectorAll(".type-btn").forEach(btn =>
-      btn.classList.remove("active")
-    );
+        document.querySelectorAll(".type-btn").forEach(btn =>
+            btn.classList.remove("active")
+        );
 
-    button.classList.add("active");
+        button.classList.add("active");
 
-    selectedType = button.dataset.type;
+        selectedType = button.dataset.type;
 
-    renderMenu();
-  });
-
+        renderMenu();
+    });
 });
 
-// CATEGORY FILTERS
-
+// Category filters
 document.querySelectorAll(".category-btn").forEach(button => {
 
-  button.addEventListener("click", () => {
+    button.addEventListener("click", () => {
 
-    document.querySelectorAll(".category-btn").forEach(btn =>
-      btn.classList.remove("active")
-    );
+        document.querySelectorAll(".category-btn").forEach(btn =>
+            btn.classList.remove("active")
+        );
 
-    button.classList.add("active");
+        button.classList.add("active");
 
-    selectedCategory = button.dataset.category;
+        selectedCategory = button.dataset.category;
 
-    renderMenu();
-  });
-
+        renderMenu();
+    });
 });
 
-// SEARCH FUNCTION
-
+// Search
 if (menuSearch) {
 
-  menuSearch.addEventListener("input", event => {
+    menuSearch.addEventListener("input", event => {
 
-    searchText = event.target.value.toLowerCase().trim();
+        searchText = event.target.value.toLowerCase().trim();
 
-    renderMenu();
-  });
-
+        renderMenu();
+    });
 }
 
-// INITIAL MENU
+// Initial cart display
+renderCart();
 
-renderMenu();
+// Load menu when website opens
+loadMenuFromSupabase();
+
+// ==========================================
+// CHECKOUT: SUPABASE + WHATSAPP
+// ==========================================
+
+const placeOrderBtn = document.getElementById("placeOrderBtn");
+const customerNameInput = document.getElementById("customerName");
+const tableDisplay = document.getElementById("tableDisplay");
+const orderMessage = document.getElementById("orderMessage");
+
+// Get table number from QR code URL, e.g. ?table=T01
+const urlParams = new URLSearchParams(window.location.search);
+const tableNumber = urlParams.get("table") || "Counter";
+
+if (tableDisplay) {
+    tableDisplay.textContent = `Order Type: ${tableNumber}`;
+}
+
+if (placeOrderBtn) {
+    placeOrderBtn.addEventListener("click", async function () {
+
+        if (!tableNumber) {
+            alert("Table number not detected. Please scan the table QR code.");
+            return;
+        }
+
+        if (cart.length === 0) {
+            alert("Your cart is empty. Please add dishes first.");
+            return;
+        }
+
+        const customerName = customerNameInput.value.trim();
+
+        // Prevent repeated clicks
+        placeOrderBtn.disabled = true;
+        placeOrderBtn.textContent = "Placing Order...";
+        orderMessage.textContent = "Saving your order...";
+
+        try {
+            // Save order in Supabase
+            const { data, error } = await window.db.rpc(
+                "place_table_order",
+                {
+                    p_table_number: tableNumber,
+                    p_customer_name: customerName || null,
+                    p_items: cart.map(item => ({
+                        menu_item_id: item.id,
+                        quantity: item.quantity,
+                        portion: item.portion
+                    }))
+                }
+            );
+
+            if (error) {
+                throw error;
+            }
+
+            if (!data || !data.success) {
+                throw new Error("Order could not be confirmed.");
+            }
+
+            // Prepare WhatsApp message
+            let message = `*DESI CHAI THEKA - NEW ORDER*\n\n`;
+            message += `Order Number: ${data.order_number}\n`;
+            message += `Table: ${tableNumber}\n`;
+            message += `Customer: ${customerName || "Not provided"}\n\n`;
+            message += `*ORDER ITEMS*\n`;
+
+            cart.forEach(item => {
+                const portion = item.portion.toUpperCase();
+                const subtotal = item.price * item.quantity;
+
+                message += `\n${item.name}\n`;
+                message += `${portion} x ${item.quantity}\n`;
+                message += `₹${item.price} each = ₹${subtotal}\n`;
+            });
+
+            message += `\n*TOTAL: ₹${data.total_amount}*\n`;
+            message += `\nStatus: ${data.status.toUpperCase()}`;
+            message += `\n\nPlease confirm this order.`;
+
+            const whatsappURL =
+                `https://wa.me/${RESTAURANT_WHATSAPP}?text=${encodeURIComponent(message)}`;
+
+            // Clear cart after successful database save
+            cart = [];
+            renderCart();
+
+            orderMessage.textContent =
+                `Order #${data.order_number} saved successfully! Opening WhatsApp...`;
+
+            // Open WhatsApp with the prepared order
+            window.location.href = whatsappURL;
+
+        } catch (error) {
+            console.error("Order submission error:", error);
+            orderMessage.textContent =
+                "Unable to place order. Please try again.";
+            alert(error.message || "Something went wrong.");
+        } finally {
+            placeOrderBtn.disabled = false;
+            placeOrderBtn.textContent = "Place Order on WhatsApp";
+        }
+    });
+}

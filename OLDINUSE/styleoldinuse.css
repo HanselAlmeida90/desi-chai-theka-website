@@ -1,0 +1,14 @@
+:root {
+  --dark: #21150f;
+  --brown: #422719;
+  --orange: #d97732;
+  --cream: #fff8ed;
+  --muted: #76675d;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

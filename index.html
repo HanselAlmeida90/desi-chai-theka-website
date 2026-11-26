@@ -10,8 +10,117 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-  <script src="JS/menu.js" defer></script>
+  <!-- <script src="JS/menu.js" defer></script> -->
+  <!-- <script src="JS/main.js" defer></script> -->
+<!-- Added database connection here  -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="JS/supabase.js" defer></script>
+<!-- <script src="JS/main.js" defer></script> -->
+<script src="JS/menu.js" defer></script>
+<!-- ending database connection here -->
+ <div class="menu-heading"></div>
+
+
   <style>
+
+    /* CUSTOMER CART */
+
+.cart-section {
+  background: #ffffff;
+  border: 1px solid #eadbc9;
+  border-radius: 15px;
+  padding: 22px;
+  margin: 30px 0;
+  box-shadow: 0 6px 20px rgba(50, 30, 15, .05);
+}
+
+.cart-section h3 {
+  color: #790d32;
+  margin-bottom: 15px;
+  font-size: 23px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px dashed #eadfd5;
+}
+
+.cart-item-info {
+  flex: 1;
+}
+
+.cart-item-info strong {
+  display: block;
+  color: #39271e;
+}
+
+.cart-item-info small {
+  color: #76675d;
+}
+
+.cart-controls {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.cart-controls button,
+.add-cart-btn {
+  border: none;
+  background: #790d32;
+  color: white;
+  padding: 7px 12px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.cart-controls button.remove-btn {
+  background: #777;
+}
+
+.cart-total {
+  text-align: right;
+  margin-top: 18px;
+  font-size: 19px;
+  color: #790d32;
+  font-weight: 700;
+}
+
+.dish-order-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.portion-select {
+  padding: 7px;
+  border: 1px solid #e4cdbb;
+  border-radius: 7px;
+  background: white;
+  max-width: 100px;
+}
+
+.add-cart-btn {
+  background: #d97732;
+}
+
+.add-cart-btn:hover {
+  background: #b85d22;
+}
+
+@media (max-width: 520px) {
+  .cart-item {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
     :root {
       --dark: #21150f;
       --brown: #422719;
@@ -779,7 +888,60 @@
       .experience h2 {
         font-size: 34px;
       }
+      /* CUSTOMER CART */
+
     }
+
+
+/* CUSTOMER CHECKOUT */
+.checkout-section {
+    background: #fff8f0;
+    border: 1px solid #eadbc9;
+    border-radius: 15px;
+    padding: 22px;
+    margin: 20px 0 35px;
+}
+
+.checkout-section h3 {
+    color: #790d32;
+    margin-bottom: 15px;
+}
+
+.checkout-section label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: 600;
+}
+
+.checkout-section input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d9c5b5;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.checkout-section button {
+    width: 100%;
+    padding: 13px;
+    background: #25D366;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#tableDisplay {
+    font-weight: 700;
+    color: #790d32;
+    margin-bottom: 15px;
+}
+
+#orderMessage {
+    margin-top: 12px;
+}
+
   </style>
 </head>
 
@@ -982,6 +1144,44 @@
       </article>
 
     </div>
+
+<!-- CUSTOMER CART -->
+<div class="cart-section" id="cartSection">
+  <h3>🛒 Your Cart</h3>
+
+  <div id="cartItems">
+    <p>Your cart is empty. Add your favourite dishes!</p>
+  </div>
+
+  <div class="cart-total">
+    Total: <strong id="cartTotal">₹0</strong>
+  </div>
+</div>
+
+
+<!-- CUSTOMER CHECKOUT -->
+<div class="checkout-section" id="checkoutSection">
+    <h3>Complete Your Order</h3>
+
+    <label for="customerName">Your Name (Optional)</label>
+    <input
+        type="text"
+        id="customerName"
+        placeholder="Enter your name"
+        maxlength="100"
+    >
+
+    <p id="tableDisplay">
+        Table: Not detected
+    </p>
+
+    <button type="button" id="placeOrderBtn">
+        Place Order on WhatsApp
+    </button>
+
+    <p id="orderMessage" role="status"></p>
+</div>
+
 
     <!-- MENU FILTERS -->
 
